@@ -121,5 +121,5 @@ _You may insert screenshots or UI demos here in the repo (e.g., `/assets` folder
 
 ## 📝 License
 
-This project is open-source and developed for educational and learning purposes.  
-Feel free to fork, enhance, or contribute to its growth.
+This project is licensced to @prashant152005, developed for educational and learning purposes.  
+Feel free to contact for fork, enhance, or contribute to its growth.
