@@ -1,4 +1,4 @@
-
+ 
 # 🏠 ForeSight Realty  
 ### *AI-Driven Real Estate Market Analysis & Property Recommendation System*
 
