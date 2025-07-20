@@ -1,0 +1,553 @@
+  const express = require("express");
+const connectToDatabase = require("./connetion");
+const auth = require("./routes/auth");
+const propertyList = require("./routes/propertyList");
+const addDemoProperty = require("./models/propertyList");
+const mongoose = require("mongoose"); // Import mongoose
+const app = express();
+const port = 4005;
+const cors = require("cors");
+
+app.use(express.json());
+app.use(cors());
+connectToDatabase("mongodb://127.0.0.1:27017/foresight_application");
+
+// ---router---
+app.use("/api", auth);
+app.use("/api2", propertyList);
+
+app.listen(port, () => {
+  console.log("server is running on port :", port);
+});
+
+const demoProperties = [
+  {
+    "img": "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDIxfHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+    "title": "Modern Apartment in Mumbai",
+    "description": "This modern apartment in Mumbai offers comfort and style. With spacious rooms and contemporary design, it is perfect for urban living. Located in a prime area, it provides easy access to shopping, entertainment, and transport hubs. Ideal for city dwellers seeking a convenient lifestyle.",
+    "address": "Marine Drive",
+    "city": "Mumbai",
+    "country": "India",
+    "price": 500000,
+    "status": "sell",
+    "bedrooms": 2,
+    "parking": "with parking",
+    "area": 1200,
+    "pincode": 400002
+  },
+  {
+    "img": "https://unsplash.com/photos/3d-render-modern-building-exterior-2MA8dFvOMec",
+    "title": "Luxury Villa in Goa",
+    "description": "Experience luxury in this beautiful villa located in Goa. Surrounded by serene beaches, it offers spacious rooms, panoramic views, and a private pool. The villa combines modern amenities with tropical charm, making it an ideal retreat for those who enjoy a lavish, tranquil lifestyle by the sea.",
+    "address": "456 Calangute Beach Rd",
+    "city": "Goa",
+    "country": "India",
+    "price": 1500000,
+    "status": "sell",
+    "bedrooms": 4,
+    "parking": "with parking",
+    "area": 3500,
+    "pincode": 403516
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1434082033009-b81d41d32e1c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aG91c2V8ZW58MHx8MHx8fDA%3D",
+    "title": "Cozy Cottage in Manali",
+    "description": "This cozy cottage in Manali provides a peaceful retreat in the mountains. Surrounded by lush greenery, it offers a charming atmosphere with modern comforts. It’s perfect for those looking to escape city life and embrace nature. A serene getaway with easy access to adventure activities.",
+    "address": "Old Manali Rd",
+    "city": "Manali",
+    "country": "India",
+    "price": 300000,
+    "status": "rent",
+    "bedrooms": 3,
+    "parking": "without parking",
+    "area": 1800,
+    "pincode": 175131
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1505901889250-5cd7cd813691?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzY0fHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+    "title": "Beachfront house in Pondicherry",
+    "description": "A stunning beachfront house in Pondicherry, offering breathtaking ocean views. The spacious property includes a garden, modern amenities, and access to the beach. Ideal for those seeking a luxurious coastal lifestyle, it provides tranquility and is close to the city's French colonial charm and attractions.",
+    "address": "Auroville Beach Rd",
+    "city": "Pondicherry",
+    "country": "India",
+    "price": 750000,
+    "status": "sell",
+    "bedrooms": 3,
+    "parking": "with parking",
+    "area": 450,
+    "pincode": 605001
+  },
+  {
+    "img": "https://unsplash.com/photos/trees-beside-white-house-IYfp2Ixe9nM",
+    "title": "Spacious apartment in Chennai",
+    "description": "A spacious apartment in Chennai, offering modern interiors and a comfortable living space. This well-designed apartment is located in a central area with easy access to shops, restaurants, and schools. Perfect for families and professionals who enjoy a balanced city lifestyle with all conveniences.",
+    "address": "Anna Salai",
+    "city": "Chennai",
+    "country": "India",
+    "price": 600000,
+    "status": "rent",
+    "bedrooms": 2,
+    "parking": "without parking",
+    "area": 450,
+    "pincode": 600002
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzc2fHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+    "title": "Penthouse in Bangalore",
+    "description": "A luxurious penthouse located in the heart of Bangalore, offering stunning city views and sophisticated design. Featuring modern amenities, it’s perfect for those seeking high-end living with proximity to tech hubs, shopping districts, and dining hotspots. An ideal home for professionals and executives.",
+    "address": "MG Road",
+    "city": "Bangalore",
+    "country": "India",
+    "price": 2000000,
+    "status": "sell",
+    "bedrooms": 5,
+    "parking": "with parking",
+    "area": 450,
+    "pincode": 560001
+  },
+  {
+    "img": "https://unsplash.com/photos/red-and-gray-brick-house-under-gray-sky-gVG8cRjHF-8",
+    "title": "Farmhouse in Punjab",
+    "description": "A sprawling farmhouse in Punjab, offering vast open spaces and a peaceful rural setting. With a large garden and ample outdoor space, it’s perfect for those seeking tranquility and an escape from city life. A great place for family gatherings, farming, or simply relaxing in nature.",
+    "address": "Amritsar Rd",
+    "city": "Ludhiana",
+    "country": "India",
+    "price": 400000,
+    "status": "sell",
+    "bedrooms": 4,
+    "parking": "with parking",
+    "area": 450,
+    "pincode": 141001
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDUwfHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+    "title": "Townhouse in Chandigarh",
+    "description": "A stylish townhouse in Chandigarh, featuring modern architecture and cozy interiors. Located in a well-planned city, it offers easy access to parks, shopping centers, and schools. Ideal for families looking for a peaceful living environment with all the conveniences of urban life in a well-maintained area.",
+    "address": "Sector 17",
+    "city": "Chandigarh",
+    "country": "India",
+    "price": 800000,
+    "status": "rent",
+    "bedrooms": 3,
+    "parking": "without parking",
+    "area": 450,
+    "pincode": 160017
+  },
+  {
+    "img": "https://media.istockphoto.com/id/185321544/photo/beautiful-house-in-florida.jpg?s=2048x2048&w=is&k=20&c=dVUogz715qMWW3m4gDMIwfx9XjzaliKhbQLTNMyEYJI=",
+    "title": "Luxury Apartment in Delhi",
+    "description": "Located in Delhi’s upscale district, this luxury apartment offers both comfort and sophistication. With elegant interiors, spacious rooms, and top-notch amenities, it’s perfect for city dwellers who seek convenience and class. Close to cultural landmarks, shopping areas, and entertainment hubs, it provides an unmatched urban living experience.",
+    "address": "Connaught Place",
+    "city": "Delhi",
+    "country": "India",
+    "price": 1200000,
+    "status": "sell",
+    "bedrooms": 4,
+    "parking": "with parking",
+    "area": 450,
+    "pincode": 110001
+  },
+  {
+    "img": "https://images.unsplash.com/photo-1608045742930-48cee6018255?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDQ1fHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+    "title": "Modern apartment in Hyderabad",
+    "description": "A modern apartment in Hyderabad, featuring spacious interiors, contemporary design, and convenient access to the city’s commercial and cultural centers. The apartment offers comfort and easy living, ideal for young professionals or families. Enjoy urban amenities and a peaceful home in a thriving tech hub of India.",
+    "address": "Banjara Hills",
+    "city": "Hyderabad",
+    "country": "India",
+    "price": 1100000,
+    "status": "rent",
+    "bedrooms": 3,
+    "parking": "without parking",
+    "area": 450,
+    "pincode": 500034
+  },
+{
+  "img": "https://i.postimg.cc/DzhJmw1v/peter-jan-rijpkema-pn-Etsdg-Be-BE-unsplash.jpg",
+  "title": "Luxury apartment in Goa",
+  "description": "A lavish apartment offering spectacular beach views in goa’s exclusive neighborhood. with spacious interiors, luxurious finishes, and top-notch amenities, this apartment is perfect for those who want to experience coastal luxury living at its finest in one of india’s most vibrant destinations.",
+  "address": "Calangute beach",
+  "city": "goa",
+  "country": "india",
+  "price": 10000000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 350,
+  "pincode": "403516"
+},
+{
+  "img": "https://i.postimg.cc/g2HRVhzX/phil-hearing-IYfp2-Ixe9n-M-unsplash.jpg",
+  "title": "Modern villa in Kerala",
+  "description": "A contemporary villa with ocean views and a lush garden in kerala. this property boasts expansive rooms, modern amenities, and a tranquil atmosphere, offering the perfect escape in one of india’s most serene and beautiful states.",
+  "address": "Kovalam Road",
+  "city": "kerala",
+  "country": "india",
+  "price": 2500000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 600,
+  "pincode": "695527"
+},
+{
+  "img": "https://i.postimg.cc/6Q18cLD3/zac-gudakov-burxa-X8eqw0-unsplash.jpg",
+  "title": "Luxury ranch in Rajasthan",
+  "description": "This expansive ranch is located in the scenic hills of rajasthan, featuring vast open spaces and traditional charm. with luxury amenities and plenty of land for agriculture or leisure activities, it’s a peaceful retreat with breathtaking natural surroundings.",
+  "address": "jaipur road",
+  "city": "rajasthan",
+  "country": "india",
+  "price": 5000000,
+  "status": "sell",
+  "bedrooms": 6,
+  "parking": "with parking",
+  "area": 1200,
+  "pincode": "302019"
+},
+{
+  "img": "https://i.postimg.cc/t4q7HMbJ/zac-gudakov-fa-BWQt9i7dg-unsplash.jpg",
+  "title": "Elegant villa in Uttarakhand",
+  "description": "A stunning villa nestled in the hills of uttarakhand, offering a perfect blend of traditional elegance and modern luxury. featuring breathtaking views, a charming garden, and exceptional amenities, this property is ideal for those looking to experience the serenity of the mountains in style.",
+  "address": "nainital road",
+  "city": "uttarakhand",
+  "country": "india",
+  "price": 5500000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 500,
+  "pincode": "263136"
+},
+{
+  "img": "https://i.postimg.cc/ydRgQ3hz/scott-webb-1ddol8rg-UH8-unsplash.jpg",
+  "title": "Exclusive mansion in Punjab",
+  "description": "This luxurious mansion in punjab boasts panoramic views of the countryside. with its stately architecture, expansive grounds, and high-end amenities, it’s an ideal home for those who appreciate opulence and tranquility, set in one of india’s most culturally rich regions.",
+  "address": "amritsar road",
+  "city": "punjab",
+  "country": "india",
+  "price": 7500000,
+  "status": "sell",
+  "bedrooms": 8,
+  "parking": "with parking",
+  "area": 1000,
+  "pincode": "143001"
+},
+{
+  "img": "https://i.postimg.cc/4d6TyXbg/james-feaver-8-I-y-COl-I340-unsplash.jpg",
+  "title": "Villa in Himachal Pradesh",
+  "description": "A charming villa nestled in the mountains of himachal pradesh, offering stunning views of the surrounding hills and valleys. with a swimming pool, lush garden, and elegant interiors, this property provides a luxurious retreat for those seeking peace and nature’s beauty.",
+  "address": "shimla ridge",
+  "city": "himachal pradesh",
+  "country": "india",
+  "price": 3000000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 450,
+  "pincode": "171001"
+},
+{
+  "img": "https://i.postimg.cc/nr1j4bZ8/terrah-holly-pmhdkg-RCbt-E-unsplash.jpg",
+  "title": "Modern apartment in Maharashtra",
+  "description": "A spacious apartment in mumbai offering stunning harbour views. with a contemporary design and high-end finishes, this apartment is the perfect blend of luxury and urban living in one of india’s most dynamic cities.",
+  "address": "marine drive",
+  "city": "mumbai",
+  "country": "india",
+  "price": 2800000,
+  "status": "sell",
+  "bedrooms": 3,
+  "parking": "without parking",
+  "area": 250,
+  "pincode": "400020"
+},
+{
+  "img": "https://i.postimg.cc/xC21tx69/frames-for-your-heart-m-R1-CIDdu-GLc-unsplash.jpg",
+  "title": "Spacious farmhouse in Tamil Nadu",
+  "description": "A beautiful farmhouse located in the lush greenery of tamil nadu, offering acres of land and rolling hills. perfect for those seeking peace and privacy while still being close to the vibrant cultural heritage of southern india.",
+  "address": "Thanjavur",
+  "city": "tamil nadu",
+  "country": "india",
+  "price": 2200000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 800,
+  "pincode": "40502"
+},
+{
+  "img": "https://i.postimg.cc/0Nqvs6Df/stephan-bechert-y-FV39g6-AZ5o-unsplash.jpg",
+  "title": "Luxury high-rise in Delhi",
+  "description": "A premium high-rise apartment with panoramic city views in delhi. featuring state-of-the-art amenities and contemporary design, this apartment offers unparalleled luxury and convenience, making it the perfect home in india’s bustling capital.",
+  "address": "78 shibuya street",
+  "city": "delhi",
+  "country": "india",
+  "price": 12000000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 350,
+  "pincode": "110001"
+},
+{
+  "img": "https://i.postimg.cc/DybRwv2Y/james-feaver-O4-Ywu-YNj5-A-unsplash.jpg",
+  "title": "Luxurious penthouse in Karnataka",
+  "description": "This luxurious penthouse offers breathtaking city views and cutting-edge design in the heart of bangalore. with its modern amenities and spacious interiors, it’s the perfect home for those seeking a blend of luxury and convenience in one of india’s top tech hubs.",
+  "address": "koramangala road",
+  "city": "Bengaluru",
+  "country": "india",
+  "price": 6000000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 400,
+  "pincode": "560034"
+},
+{
+  "img": "https://i.postimg.cc/vHdCDRcY/sieuwert-otterloo-aren8nutd1-Q-unsplash.jpg",
+  "title": "Villa with golf course view in Maharashtra",
+  "description": "This beautiful villa overlooks a golf course in maharashtra. featuring expansive living spaces, lush gardens, and luxury amenities, it’s the ideal property for those seeking an upscale lifestyle in one of india’s most sought-after regions.",
+  "address": "Mira Road",
+  "city": "maharashtra",
+  "country": "india",
+  "price": 6500000,
+  "status": "sell",
+  "bedrooms": 6,
+  "parking": "with parking",
+  "area": 800,
+  "pincode": "400054"
+},
+{
+  "img": "https://i.postimg.cc/zvPLtwLp/gus-ruballo-h5-QNcl-JUi-A8-unsplash.jpg",
+  "title": "Gorgeous apartment in West Bengal",
+  "description": "an elegant apartment in the heart of kolkata with stunning architecture and spacious interiors. this prime property offers modern amenities and a central location, making it ideal for those looking to experience the best of city living in one of india’s most iconic cities.",
+  "address": "kolkata",
+  "city": "kolkata",
+  "country": "india",
+  "price": 3200000,
+  "status": "sell",
+  "bedrooms": 3,
+  "parking": "without parking",
+  "area": 250,
+  "pincode": "700016"
+},
+{
+  "img": "https://media.istockphoto.com/id/185321544/photo/beautiful-house-in-florida.jpg?s=2048x2048&w=is&k=20&c=dVUogz715qMWW3m4gDMIwfx9XjzaliKhbQLTNMyEYJI=",
+  "title": "Luxury apartment in Mumbai",
+  "description": "a high-end apartment in the bustling city of mumbai, offering premium amenities and modern finishes. with panoramic city views and easy access to the heart of india’s entertainment and financial hubs, this apartment offers an unrivaled lifestyle in one of the world’s most dynamic cities.",
+  "address": "Vasai",
+  "city": "mumbai",
+  "country": "india",
+  "pincode": "400020",
+  "price": 1200000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 2200
+},
+{
+  "img": "https://images.unsplash.com/photo-1505901889250-5cd7cd813691?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzY0fHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+  "title": "Beachfront house in Goa",
+  "description": "This stunning beachfront property in Goa offers direct access to the beach. With expansive sea views, the house features a spacious open-plan living area, modern amenities, and beautifully landscaped gardens. Perfect for those seeking a serene retreat by the sea, it is a true paradise.",
+  "address": "Goa Velha",
+  "city": "goa",
+  "country": "india",
+  "pincode": "403001",
+  "price": 750000,
+  "status": "sell",
+  "bedrooms": 3,
+  "parking": "with parking",
+  "area": 2500
+},
+{
+  "img": "https://unsplash.com/photos/trees-beside-white-house-IYfp2Ixe9nM",
+  "title": "Spacious apartment in Bengaluru",
+  "description": "Located in the heart of Bangalore, this large apartment offers a perfect blend of luxury and convenience. The spacious interiors include modern fixtures, large windows with great city views, and easy access to shops, restaurants, and parks. An ideal home for city dwellers looking for comfort and space.",
+  "address": "5, Brigade Rd, Shanthala Nagar",
+  "city": "Bengaluru",
+  "country": "india",
+  "pincode": "560025",
+  "price": 600000,
+  "status": "rent",
+  "bedrooms": 2,
+  "parking": "without parking",
+  "area": 1400
+},
+{
+  "img": "https://images.unsplash.com/photo-1571939228382-b2f2b585ce15?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzc2fHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+  "title": "Penthouse in Mumbai",
+  "description": "This luxurious penthouse offers breathtaking panoramic views of Mumbai’s skyline. The spacious layout features modern architecture, high-end finishes, and expansive living areas. Located in a prime area of Mumbai, this property is perfect for those seeking a sophisticated urban lifestyle with all the comforts of home.",
+  "address": "Nariman point",
+  "city": "mumbai",
+  "country": "india",
+  "pincode": "400021",
+  "price": 2000000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 4000
+},
+{
+  "img": "https://unsplash.com/photos/red-and-gray-brick-house-under-gray-sky-gVG8cRjHF-8",
+  "title": "Farmhouse in Punjab",
+  "description": "Located in the serene countryside of Punjab, this expansive farmhouse is perfect for nature lovers. Surrounded by lush green fields, it features large rooms, a well-maintained garden, and ample space for outdoor activities. Ideal for those looking to escape city life and enjoy the tranquility of rural India.",
+  "address": "Ludhiana",
+  "city": "amritsar",
+  "country": "india",
+  "pincode": "143001",
+  "price": 400000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 3000
+},
+{
+  "img": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDUwfHxob3VzZXxlbnwwfHwwfHx8MA%3D%3D",
+  "title": "Townhouse in Delhi",
+  "description": "This stylish townhouse, located in the heart of Delhi, combines modern design with classic elegance. The spacious layout includes multiple bedrooms, a contemporary kitchen, and an airy living space. With easy access to the city’s top attractions and businesses, it’s the perfect place for urban living.",
+  "address": "connaught place",
+  "city": "delhi",
+  "country": "india",
+  "pincode": "110001",
+  "price": 800000,
+  "status": "rent",
+  "bedrooms": 3,
+  "parking": "without parking",
+  "area": 1900
+},
+{
+  "img": "https://i.postimg.cc/rmJZt3v3/derek-thomson-p50-Hc-C0-Yr-L0-unsplash.jpg",
+  "title": "Modern penthouse in Kolkata",
+  "description": "This sleek penthouse in Kolkata offers breathtaking views of the city skyline. Designed with contemporary finishes and an open-plan layout, it provides ample natural light and spacious living areas. Located in a prime city area, this penthouse is perfect for those seeking modern luxury in the heart of Kolkata.",
+  "address": "Mullick Bazar",
+  "city": "kolkata",
+  "country": "india",
+  "pincode": "700016",
+  "price": 5000000,
+  "status": "sell",
+  "bedrooms": 3,
+  "parking": "with parking",
+  "area": 320
+},
+{
+  "img": "https://i.postimg.cc/x8PWPqBf/redd-francisco-sej-Ly-CD2-UQE-unsplash.jpg",
+  "title": "Seaside villa in Kerala",
+  "description": "A beautiful seaside villa in Kerala offering picturesque views of the coastline. With spacious living areas, elegant interiors, and a private pool, this villa is perfect for those seeking peace and tranquility by the sea. Ideal for vacationers or those seeking a luxurious coastal lifestyle.",
+  "address": "Cherlai Bazar",
+  "city": "kochi",
+  "country": "india",
+  "pincode": "682001",
+  "price": 3500000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 550
+},
+{
+  "img": "https://i.postimg.cc/FRqHyC5F/leon-seibert-g1-Nf2eq-UEvw-unsplash.jpg",
+  "title": "Chic loft in Pune",
+  "description": "A stylish loft in the heart of Pune, featuring contemporary architecture and modern finishes. With an open-plan design, this property provides an abundance of natural light and stunning city views. Located in a vibrant neighborhood, it’s the perfect home for young professionals or those seeking an urban lifestyle.",
+  "address": "456 baner road",
+  "city": "pune",
+  "country": "india",
+  "pincode": "411045",
+  "price": 2000000,
+  "status": "sell",
+  "bedrooms": 2,
+  "parking": "without parking",
+  "area": 180
+},
+{
+  "img": "https://i.postimg.cc/bwT1jn20/zion-c-s-Gblr5y-VXi-M-unsplash.jpg",
+  "title": "Mountain retreat in Uttarakhand",
+  "description": "Nestled in the beautiful hills of Uttarakhand, this peaceful mountain retreat offers the perfect escape from the hustle and bustle of city life. With breathtaking views, cozy living spaces, and lush greenery, it’s an ideal getaway for nature lovers seeking solace and relaxation in the lap of nature.",
+  "address": "Tallital",
+  "city": "nainital",
+  "country": "india",
+  "pincode": "263002",
+  "price": 1000000,
+  "status": "sell",
+  "bedrooms": 4,
+  "parking": "with parking",
+  "area": 600
+},
+{
+  "img": "https://i.postimg.cc/Wbs3cHmK/ronnie-george-09-Idwcwr-MH4-unsplash.jpg",
+  "title": "Luxurious mansion in Mumbai",
+  "description": "This grand mansion in Mumbai offers luxurious amenities, including spacious living areas, a private garden, and modern finishes. With panoramic views of the city, it is the epitome of luxury living. The property is perfect for those seeking the ultimate in privacy and exclusivity in the heart of Mumbai.",
+  "address": "456 Beverly park road",
+  "city": "mumbai",
+  "country": "india",
+  "pincode": "401107",
+  "price": 15000000,
+  "status": "sell",
+  "bedrooms": 7,
+  "parking": "with parking",
+  "area": 800
+},
+{
+  "img": "https://i.postimg.cc/y6jKcY9Q/zane-lee-ECsn-Jcc0-Dhs-unsplash.jpg",
+  "title": "Urban apartment in Chandigarh",
+  "description": "A modern apartment with sleek finishes and a prime location in Chandigarh. Featuring large windows, an open-plan design, and luxury amenities, it’s perfect for those seeking a contemporary lifestyle. Close to parks, shopping centers, and entertainment options, this property offers convenience and sophistication for city living.",
+  "address": "Sector 8C",
+  "city": "chandigarh",
+  "country": "india",
+  "pincode": "160017",
+  "price": 1200000,
+  "status": "sell",
+  "bedrooms": 2,
+  "parking": "without parking",
+  "area": 150
+},
+{
+  "img": "https://i.postimg.cc/rmqbwxh8/bernadette-gatsby-b-N-Tkeda-Bu-Q-unsplash.jpg",
+  "title": "Historical home in Kolkata",
+  "description": "This beautifully preserved historical home in Kolkata offers a glimpse into the city’s rich past. With charming architecture and classic features, it includes spacious rooms and lush gardens. Located in a sought-after neighborhood, this home offers a unique opportunity to own a piece of Kolkata’s heritage.",
+  "address": "Tangra",
+  "city": "kolkata",
+  "country": "india",
+  "pincode": "700016",
+  "price": 2500000,
+  "status": "sell",
+  "bedrooms": 5,
+  "parking": "with parking",
+  "area": 500
+},
+{
+  "img": "https://i.postimg.cc/bv4x6ht4/zac-gudakov-Rv-GEvf6-PVm-Y-unsplash.jpg",
+  "title": "Stylish Townhouse in Hyderabad",
+  "description": "This chic townhouse in the heart of Hyderabad combines modern style with comfort. Featuring sleek design, contemporary finishes, and open living spaces, this property offers a comfortable urban lifestyle. Located in a vibrant neighborhood with access to top restaurants and entertainment, it’s perfect for young professionals and families.",
+  "address": "banjara hills",
+  "city": "hyderabad",
+  "country": "india",
+  "pincode": "500034",
+  "price": 900000,
+  "status": "sell",
+  "bedrooms": 3,
+  "parking": "without parking",
+  "area": 280
+},
+{
+  "img": "https://i.postimg.cc/vTYtnv9m/k8-9br-Ib-LCo950-unsplash.jpg",
+  "title": "Beachfront property in Goa",
+  "description": "An exquisite beachfront property in Goa offering unparalleled views of the ocean. With modern architecture, spacious living areas, and luxurious amenities, this property is perfect for those who desire a peaceful and exclusive coastal lifestyle. Its proximity to beaches and resorts adds to its appeal as a vacation home.",
+  "address": "anjuna beach",
+  "city": "goa",
+  "country": "india",
+  "pincode": "403509",
+  "price": 8000000,
+  "status": "sell",
+  "bedrooms": 6,
+  "parking": "with parking",
+  "area": 700
+}
+];
+
+// Insert the demo data
+addDemoProperty
+  .insertMany(demoProperties)
+  .then((result) => {
+    console.log("Demo data added:", result);
+    mongoose.connection.close(); // Close the connection after seeding
+  })
+  .catch((error) => {
+    console.error("Error adding demo data:", error);
+  });
