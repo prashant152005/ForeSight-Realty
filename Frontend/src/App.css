@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.main-container{
+    background: linear-gradient(0deg, black, #00060c 35%);
+    width: 100%;
+    min-height:100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;    
+}
+.main-container > *:not(.footer-container) {
+    flex: 1; 
+  }
