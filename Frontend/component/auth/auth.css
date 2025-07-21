@@ -1,0 +1,91 @@
+:root {
+  --background-color: #5b5b5b29;
+  --text-color: #ffffff;
+  --input-background: #333333;
+  --button-background: #ff551f;
+  --button-hover: #ff612f;
+}
+
+.auth-container {
+  min-height:100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding: 20px;
+}
+
+.sub-container {
+  width: 90%;
+  max-width: 400px;
+  background-color: #33333329;
+  padding: 2rem;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius:16px;
+}
+
+.sub-container h2 {
+  margin-bottom: 14px;
+}
+
+.auth-form {
+  width: 100%;
+}
+
+.auth-form input {
+  background-color: var(--input-background);
+  border: none;
+  padding: 8px;
+  margin: 8px 0;
+  color: var(--text-color);
+  font-size: 16px;
+  outline: none;
+  width:100%;
+  border-radius:5px;
+}
+
+.auth-form button {
+  background-color: var(--button-background);
+  color: var(--text-color);
+  border: none;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width:100%;
+  border-radius:5px;
+}
+
+.auth-form button:hover {
+  background-color: var(--button-hover);
+}
+
+.auth-switch {
+  margin-top: 15px;
+  color: var(--text-color);
+  text-align:center;
+}
+
+.auth-switch a {
+  color: var(--button-background);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.auth-switch a:hover {
+  color: var(--button-hover);
+}
+
+@media (min-width: 768px) {
+  .auth-container {
+    padding: 20px;
+  }
+
+  .sub-container {
+    width: 400px;
+  }
+}

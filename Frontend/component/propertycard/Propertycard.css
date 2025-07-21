@@ -1,0 +1,86 @@
+:root {
+  --primary-color: #ff612f;
+}
+
+.property-card {
+  padding: 8px;
+  box-shadow: 0 8px 12px -2px rgb(255 255 255 / 10%);
+  width: 16rem;
+  overflow: hidden;
+  border: 1px solid #979797;
+  height: 20rem;
+  cursor: pointer;
+  background-color: #2828283b;
+  border-radius:12px;
+}
+
+.property-img {
+  width: 100%;
+  height: 9rem;
+  overflow: hidden;
+  border-radius:4px;
+
+}
+
+.property-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+
+.property-data {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 5px;
+  gap: 5px;
+}
+
+.heading .title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary-color);
+}
+
+.heading .status {
+  padding: 3px 11px;
+  font-size: 0.8rem;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  text-transform: uppercase;
+  height: fit-content;
+  border-radius:4px;
+}
+
+.price_and_bedroom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.property-data .description {
+  color: #bfbfbf;
+}
+
+.property-data .address {
+  color: #888;
+}
+
+.property-data .location {
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 550px) {
+  .property-card {
+    flex: 0 0 16rem;
+}
+}

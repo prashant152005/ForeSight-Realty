@@ -1,0 +1,30 @@
+
+.properties-list{
+    display: flex;
+    width: 100%;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin:auto 10px;
+}
+
+.property-actions{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #979797;
+    margin-top: 2px;
+    border-radius:8px;
+}
+
+.property-actions button{
+    outline: none;
+    background-color: #ff551f;
+    font-size: 14px;
+    border: none;
+    padding: 3px 11px;
+    color: white;
+    margin: 4px;
+    width: 50%;
+    cursor:pointer;
+    border-radius:4px;
+}

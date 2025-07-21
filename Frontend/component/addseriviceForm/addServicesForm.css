@@ -1,0 +1,247 @@
+.addserviceform {
+  height: 100%;
+  justify-content: center;
+  padding: 4.5rem 3rem 4rem 3rem;
+  margin: auto;
+  width: 100vw;
+  color: white;
+  position: relative;
+}
+
+.addserviceform h2 {
+  text-align: center;
+}
+
+.addserviceform__propertyform {
+  width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #5e5e5e29;
+  border-radius: 12px;
+}
+
+.addserviceform__propertyform form {
+  width: 100%;
+}
+
+.addserviceform__g_left {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.addserviceform__form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+}
+
+.addserviceform__form-group input,
+.addserviceform__form-group textarea,
+.addserviceform__form-group select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+  box-sizing: border-box;
+  background-color: #273039;
+  border: none;
+  color: white;
+  height: 2.2rem;
+  max-width: 17rem;
+  min-width: 16rem;
+  outline: none;
+}
+
+.addserviceform__submit_btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff551f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addserviceform__submit_btn:hover {
+  background-color: #ff612f;
+}
+
+.addserviceform__toggle-form-btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff551f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+}
+
+.addserviceform__toggle-form-btn:hover {
+  background-color: #ff612f;
+}
+
+.addserviceform__service-list {
+  margin-top: 2rem;
+}
+
+.addserviceform__service-card {
+  background-color: #33333329;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addserviceform__service-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.addserviceform__edit-btn,
+.addserviceform__delete-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #ff551f;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addserviceform__edit-btn:hover,
+.addserviceform__delete-btn:hover {
+  background-color: #ff612f;
+}
+
+.toggle-form-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff551f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+  position: absolute;
+}
+
+.service-form__service-list {
+  height: 100%;
+  margin: 2rem 1rem;
+}
+
+.service-form__service-list h2 {
+  margin-bottom: 2rem;
+}
+
+.service-list {
+  display: flex;
+  width: 100%;
+  padding: 1rem 0;
+  flex-wrap: wrap;
+  gap: 2.2rem;
+}
+
+.service-card-actions {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #979797;
+  margin-top: 2px;
+  border-radius: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  outline: none;
+  background-color: #ff551f;
+  font-size: 14px;
+  border: none;
+  padding: 3px 11px;
+  color: white;
+  margin: 4px;
+  width: 50%;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Tablet Screens - Max Width: 768px */
+@media (max-width: 768px) {
+  .addserviceform {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 4.5rem;
+  }
+
+  .addserviceform__propertyform {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .addserviceform__form-group input,
+  .addserviceform__form-group textarea,
+  .addserviceform__form-group select {
+    font-size: 14px;
+    max-width: 100%;
+    min-width: 95%;
+  }
+
+  .addserviceform__submit_btn {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile Screens - Max Width: 600px */
+@media (max-width: 600px) {
+  .addserviceform {
+    padding: 1.6rem;
+  }
+
+  .addserviceform h2 {
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+  }
+
+  .addserviceform__form-group input,
+  .addserviceform__form-group textarea,
+  .addserviceform__form-group select {
+    font-size: 12px;
+  }
+
+  .addserviceform__submit_btn {
+    font-size: 14px;
+  }
+
+  .addserviceform__toggle-form-btn {
+    font-size: 14px;
+  }
+
+  .addserviceform__edit-btn,
+  .addserviceform__delete-btn {
+    font-size: 12px;
+  }
+
+  .service-list {
+    gap: 1rem;
+  }
+
+  .addserviceform__g_left {
+    grid-template-columns: 1fr;
+  }
+}

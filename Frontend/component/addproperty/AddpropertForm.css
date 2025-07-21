@@ -1,0 +1,184 @@
+.property-form-container {
+  height: 100%;
+  justify-content: center;
+  padding: 4.5rem 3rem 4rem 3rem;
+  margin: auto;
+  width: 100vw;
+  color: white;
+  position:relative;
+}
+
+.property-form-container h2 {
+  text-align: center;
+}
+
+.propertyform {
+  width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #5e5e5e29;
+  border-radius: 12px;
+}
+
+.propertyform form {
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  display: flex; 
+}
+
+.g_left, .g_right {
+  display: flex; 
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+  width:50%;
+  min-height: 100%;
+  overflow:hidden;
+}
+
+
+.form-group label {
+  display: block;
+  margin: 3px 0;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 15px;
+  background-color: #273039;
+  border: none;
+  color: white;
+  height: 2.2rem;
+  max-width: 100%;
+  width:100%;
+  outline: none;
+  margin:0;
+}
+
+.form-group textarea{
+  min-width: 90%;
+}
+
+.form-group input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.form-group input[type='number']::-webkit-inner-spin-button,
+.form-group input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.uploaded_img {
+  width: 100%;
+  height: 245px;
+  object-fit: cover;
+  background-color: #273039;
+  display: block;
+  margin-bottom: 6px;
+  border-radius: 4px;
+}
+
+.submit_btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff551f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff612f;
+}
+
+/* Style for the toggle button */
+.addpropertyform__toggle-form-btn {
+  padding: 7px 14px;
+  border: none;
+  border-radius: 4px;
+  background-color: #ff551f;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: absolute;
+}
+
+.addpropertyform__toggle-form-btn:hover {
+  background-color: #ff612f; 
+}
+
+.user-properties-container{
+  height: 100%;
+  margin: 2rem 1rem;
+}
+
+.user-properties-container h2{
+  margin-bottom:2rem
+}
+
+@media (max-width: 768px) {
+  .property-form-container {
+    width: 100%;
+    padding: 2rem;
+    margin-top: 4.5rem;
+  }
+
+  .propertyform {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 15px; 
+    max-width: 100%;
+    min-width: 95%;
+  }
+
+  .submit_btn {
+    padding: 12px;
+    font-size: 16px; 
+  }
+  .addpropertyform__toggle-form-btn {
+    font-size: 14px;
+}
+}
+
+@media (max-width: 600px) {
+  .property-form-container {
+    padding: 1.6rem;
+  }
+
+  .property-form-container h2 {
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+  }
+
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    font-size: 15px; 
+  }
+
+  button {
+    font-size: 16px; 
+  }
+
+  .g_left, .g_right {
+    flex: auto;
+  }
+}

@@ -1,0 +1,113 @@
+/* Define primary color */
+:root {
+  --primary-color: #ff612f;
+}
+
+/* Service Card styling */
+.service-card {
+  padding: 8px;
+  box-shadow: 0 8px 12px -2px rgb(255 255 255 / 10%);
+  width: 16rem;
+  overflow: hidden;
+  border: 1px solid #979797;
+  height: auto;
+  cursor: pointer;
+  background-color: #2828283b;
+  text-transform: capitalize;
+  border-radius: 12px;
+}
+
+.service-card p,
+.service-card h4 {
+  margin: 0 0 8px 0;
+}
+
+.name_img{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 6px;  
+}
+
+.user_img{
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* Profession style: white text with orange background */
+.profession {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 5px 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 0 10px 0;
+  border-radius:4px;
+
+}
+
+/* Full name styling */
+.full-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}
+
+/* Shop name styling */
+.shop-name {
+  font-size: 1rem;
+  color: #bfbfbf;
+}
+
+/* Address and Contact number have the same style */
+.address,
+.contact {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+
+.phone_no,.address{
+  display: flex;
+  margin-bottom: 8px;
+  gap: 4px;
+  align-items: center;
+}
+.phone_no{
+  color: #bfbfbf;
+}
+
+.whatsapp-link-service {
+  align-items: center;
+  display:flex;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  justify-content: center;
+  border: 1px solid;
+  margin: 0;
+}
+
+.whatsapp-link-service:hover {
+  background-color: #f4f4f4;
+  border: 1px solid whitesmoke;
+}
+
+.whatsapp-link-service span {
+  margin-left: 4px;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 550px) {
+  .service-card {
+    width: 100%;
+    padding: 15px;
+  }
+}

@@ -1,0 +1,203 @@
+:root {
+  --primary-color: #ff551f;
+  --primary-hover: #ff612f;
+  --text-color: white;
+  --text-secondary: #ddd;
+  --border-highlight: #97999b;
+}
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 3rem;
+  color: var(--text-color);
+}
+
+.white_mark, .white_mark_2, .white_mark_3 {
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 0px 0px 20px 20px currentColor;
+}
+
+.white_mark {
+  height: 19rem; width: 19rem; left: 4rem; top: 4rem; background: #ffffff1f; color: #ffffff1f;
+}
+
+.white_mark_2 {
+  height: 11rem; width: 11rem; right: 25rem; bottom: 1rem; background: #2e405757; color: #2e405757; z-index: 0;
+}
+
+.white_mark_3 {
+  height: 14rem; width: 14rem; left: 28rem; top: 62rem; background: #0b1420; box-shadow: 0px 0px 40px 20px #29394e57; z-index: 0;
+}
+
+.hero-section, .bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 4rem;
+  gap: 1rem;
+  max-width: 1310px;
+}
+
+.righ-hero-section {
+  width: 35%; height: 75%;
+  border-radius: 50% 50% 0 0;
+  overflow: hidden;
+  border: 5px solid var(--border-highlight);
+  z-index: 99;
+}
+
+.hero-img {
+  width: 100%; height: 100%;
+  transition: 0.5s all;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.hero-img:hover { scale: 1.1; }
+
+.left-hero-section { width: 50%; }
+
+.left-hero-section h1 {
+  color: var(--text-color);
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.left-hero-section p {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+.left-hero-section button, .view_more_btn {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.left-hero-section button {
+  padding: 12px 30px;
+  font-size: 18px;
+}
+
+.left-hero-section button:hover { background-color: var(--primary-hover); }
+
+.view_more_btn {
+  padding: 4px 26px;
+  font-size: 16px;
+}
+
+.bottom-section { flex-direction: row-reverse; }
+
+.features-section {
+  width: 100%;
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-evenly;
+  height: 10rem;
+  margin-bottom: 6rem;
+}
+
+.feature-card {
+  width: 8rem; height: 5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.feature-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.feature-card h3 {
+  margin-top: 15px;
+  font-size: 24px;
+  color: var(--text-color);
+  transition: 0.3s all;
+}
+
+.feature-card:hover { transform: scale(1.05); }
+
+.feature-card h3:hover { color: var(--primary-color); }
+
+h1 { letter-spacing: 1px; }
+
+.some_property {
+  display: flex;
+  gap: 25px;
+  padding: 20px;
+  margin: 2rem auto;
+  width: 90%;
+  height: auto;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.some_property::-webkit-scrollbar { display: none; }
+
+.property-card { flex: 0 0 16rem; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section, .bottom-section { padding: 0 2.5rem; margin-top: 1rem; }
+
+  .white_mark, .white_mark_2 { height: 10rem; width: 10rem; }
+
+  .white_mark_2 { height: 6rem; width: 6rem; right: 27rem; bottom: 6rem; }
+
+  .white_mark_3 { display: none; }
+
+  .left-hero-section { width: 60%; }
+  .righ-hero-section { width: 40%; height: 60%; }
+
+  .left-hero-section h1 { font-size: 32px; }
+
+  .features-section { align-items: center; }
+  .feature-card { margin-bottom: 20px; }
+
+  .feature-card img { width: 100%; max-width: 300px; height: auto; }
+}
+
+@media (max-width: 600px) {
+  .hero-section, .bottom-section {
+    flex-direction: column-reverse;
+    height: auto;
+    margin-top: 6rem;
+  }
+
+  .bottom-section { margin-top: 3rem; }
+
+  .righ-hero-section { width: 100%; height: 22rem; margin-bottom: 1rem; }
+  .left-hero-section { width: 100%; }
+
+  .left-hero-section h1 { font-size: 28px; }
+  .left-hero-section p { font-size: 16px; }
+  .left-hero-section button { padding: 10px 24px; font-size: 16px; }
+
+  .white_mark { height: 6rem; width: 6rem; left: 2rem; top: 2rem; }
+  .white_mark_2 { height: 4rem; width: 4rem; right: 10rem; bottom: 2rem; }
+
+  .features-section { padding: 1rem; height: auto; margin-bottom: 0; }
+
+  .feature-card {
+    width: 100%;
+    max-width: 110px;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 { margin-top: 10px; font-size: 18px; }
+
+  .some_property { gap: 15px; padding: 15px; width: 95%; }
+
+}
